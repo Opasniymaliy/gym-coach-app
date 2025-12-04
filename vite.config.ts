@@ -1,21 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
-export default defineConfig(({ mode }) => ({
-  base: "/gym-coach-app/",
-  server: {
-    host: "::",
-    port: 8080,
+export default defineConfig({
+  base: "/gym-coach-app/",      // путь для GitHub Pages
+  build: {
+    outDir: "docs",             // СЮДА будет собираться прод-сайт
   },
-  plugins: [
-    react(),
-    mode === "development" && componentTagger(),
-  ].filter(Boolean),
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
+});
