@@ -23,8 +23,8 @@ export const workout1Exercises: Exercise[] = [
       
     ],
     videos: [
-      { src: "/videos/videos5.MP4", caption: "Положение штанги" },
-      { src: "/videos/videos6.MP4", caption: "Фаза опускания" },
+      { src: "videos/videos5.MP4", caption: "Положение штанги" },
+      { src: "videos/videos6.MP4", caption: "Фаза опускания" },
       
     ],
   },
@@ -49,8 +49,8 @@ export const workout1Exercises: Exercise[] = [
       
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Исходное положение" },
-      { src: "/videos/videos2.MP4", caption: "Фаза жима" },
+      { src: "videos/videos1.MP4", caption: "Исходное положение" },
+      { src: "videos/videos2.MP4", caption: "Фаза жима" },
     ],
   },
   {
@@ -76,8 +76,8 @@ export const workout1Exercises: Exercise[] = [
       "Также колени не должны 'ходить' в разные стороны",
     ],
     videos: [
-      { src: "/videos/videos3.mov", caption: "Шаг вперед" },
-      { src: "/videos/videos4.mov", caption: "Нижняя точка" },
+      { src: "videos/videos3.mov", caption: "Шаг вперед" },
+      { src: "videos/videos4.mov", caption: "Нижняя точка" },
     ],
   },
   {
@@ -102,7 +102,7 @@ export const workout1Exercises: Exercise[] = [
       
     ],
     videos: [
-      { src: "/videos/press1.MP4", caption: "Правильная форма" },
+      { src: "videos/press1.MP4", caption: "Правильная форма" },
       
     ],
   },
@@ -127,7 +127,7 @@ export const workout1Exercises: Exercise[] = [
       
     ],
     videos: [
-      { src: "/videos/videos7.MP4", caption: "Техника выполнения" },
+      { src: "videos/videos7.MP4", caption: "Техника выполнения" },
       
     ],
   },
@@ -156,10 +156,10 @@ export const workout2Exercises: Exercise[] = [
       "Не раскачивайтесь корпусом, движение контролируемое",
     ],
     videos: [
-      { src: "/videos/videos16.MP4", caption: "Широкий хват" },
-      { src: "/videos/videos17.MP4", caption: "Средний хват" },
-      { src: "/videos/videos18.MP4", caption: "Обратный хват" },
-      { src: "/videos/videos19.MP4", caption: "Обратный хват" },
+      { src: "videos/videos16.MP4", caption: "Широкий хват" },
+      { src: "videos/videos17.MP4", caption: "Средний хват" },
+      { src: "videos/videos18.MP4", caption: "Обратный хват" },
+      { src: "videos/videos19.MP4", caption: "Обратный хват" },
     ],
   },
   {
@@ -183,8 +183,8 @@ export const workout2Exercises: Exercise[] = [
       "Локти движутся под углом 45 градусов к корпусу",
     ],
     videos: [
-      { src: "/videos/videos14.MP4", caption: "Классическая техника" },
-      { src: "/videos/videos15.MP4", caption: "Классическая техника" },
+      { src: "videos/videos14.MP4", caption: "Классическая техника" },
+      { src: "videos/videos15.MP4", caption: "Классическая техника" },
     ],
   },
   {
@@ -208,8 +208,8 @@ export const workout2Exercises: Exercise[] = [
       "Не округляйте спину, держите корпус неподвижным",
     ],
     videos: [
-      { src: "/videos/videos14.MP4", caption: "Прямой хват" },
-      { src: "/videos/videos15.MP4", caption: "Обратный хват" },
+      { src: "videos/videos14.MP4", caption: "Прямой хват" },
+      { src: "videos/videos15.MP4", caption: "Обратный хват" },
     ],
   },
   {
@@ -234,8 +234,8 @@ export const workout2Exercises: Exercise[] = [
       "Не используйте инерцию, работайте подконтрольно",
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Техника выполнения" },
-      { src: "/videos/videos1.MP4", caption: "Вид сбоку" },
+      { src: "videos/videos1.MP4", caption: "Техника выполнения" },
+      { src: "videos/videos1.MP4", caption: "Вид сбоку" },
     ],
   },
   {
@@ -260,8 +260,8 @@ export const workout2Exercises: Exercise[] = [
       "Не раскачивайте корпус",
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Супинация кисти" },
-      { src: "/videos/videos1.MP4", caption: "Поочередное выполнение" },
+      { src: "videos/videos1.MP4", caption: "Супинация кисти" },
+      { src: "videos/videos1.MP4", caption: "Поочередное выполнение" },
     ],
   },
   {
@@ -285,9 +285,9 @@ export const workout2Exercises: Exercise[] = [
       "Не разводите локти в стороны",
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Со штангой" },
-      { src: "/videos/videos1.MP4", caption: "С гантелями" },
-      { src: "/videos/videos1.MP4", caption: "Положение локтей" },
+      { src: "videos/videos1.MP4", caption: "Со штангой" },
+      { src: "videos/videos1.MP4", caption: "С гантелями" },
+      { src: "videos/videos1.MP4", caption: "Положение локтей" },
     ],
   },
 ];
@@ -315,8 +315,8 @@ export const optionalExercises: Exercise[] = [
       "Закончите заминкой - легкой ходьбой 3-5 минут",
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Фаза бега" },
-      { src: "/videos/videos1.MP4", caption: "Фаза восстановления" },
+      { src: "videos/videos1.MP4", caption: "Фаза бега" },
+      { src: "videos/videos1.MP4", caption: "Фаза восстановления" },
     ],
   },
   {
@@ -341,8 +341,8 @@ export const optionalExercises: Exercise[] = [
       "Завершите легким педалированием для заминки",
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Настройка тренажера" },
-      { src: "/videos/videos1.MP4", caption: "Правильная посадка" },
+      { src: "videos/videos1.MP4", caption: "Настройка тренажера" },
+      { src: "videos/videos1.MP4", caption: "Правильная посадка" },
     ],
   },
   {
@@ -366,7 +366,7 @@ export const optionalExercises: Exercise[] = [
       "Удерживайте 30 секунд, затем смените ногу",
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Техника наклона" },
+      { src: "videos/videos1.MP4", caption: "Техника наклона" },
     ],
   },
   {
@@ -391,8 +391,8 @@ export const optionalExercises: Exercise[] = [
       "Удерживайте 30 секунд, повторите на другую сторону",
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Положение руки" },
-      { src: "/videos/videos1.MP4", caption: "Поворот корпуса" },
+      { src: "videos/videos1.MP4", caption: "Положение руки" },
+      { src: "videos/videos1.MP4", caption: "Поворот корпуса" },
     ],
   },
   {
@@ -417,10 +417,10 @@ export const optionalExercises: Exercise[] = [
       "Уделите внимание бедрам, спине и икрам",
     ],
     videos: [
-      { src: "/videos/videos1.MP4", caption: "Прокатка бедер" },
-      { src: "/videos/videos1.MP4", caption: "Прокатка спины" },
-      { src: "/videos/videos1.MP4", caption: "Прокатка икр" },
-      { src: "/videos/videos1.MP4", caption: "Триггерные точки" },
+      { src: "videos/videos1.MP4", caption: "Прокатка бедер" },
+      { src: "videos/videos1.MP4", caption: "Прокатка спины" },
+      { src: "videos/videos1.MP4", caption: "Прокатка икр" },
+      { src: "videos/videos1.MP4", caption: "Триггерные точки" },
     ],
   },
 ];
