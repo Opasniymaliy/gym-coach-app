@@ -2,78 +2,277 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Шрифт как в макете */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap");
 
+/* ==== БАЗОВАЯ ТЕМА (ЦВЕТА, ТЕКСТЫ) ==== */
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 240 10% 15%;
+    /* фон и текст */
+    --background: 283 47% 97%;      /* #f9f4fb */
+    --foreground: 297 46% 16%;      /* #3a163c */
 
+    /* карточки */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 15%;
+    --card-foreground: 297 46% 16%;
 
+    /* поповеры */
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 15%;
+    --popover-foreground: 297 46% 16%;
 
-    --primary: 12 88% 59%;
+    /* основной акцент — малиновый */
+    --primary: 341 65% 42%;         /* #b12652 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 15%;
+    /* вторичный фон */
+    --secondary: 283 47% 93%;
+    --secondary-foreground: 297 46% 16%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    /* muted / подписи */
+    --muted: 283 47% 93%;
+    --muted-foreground: 283 20% 40%;
 
-    --accent: 12 88% 59%;
+    /* доп. акцент */
+    --accent: 335 46% 56%;          /* #c35b86 */
     --accent-foreground: 0 0% 100%;
 
+    /* ошибки */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 12 88% 59%;
+    /* бордеры / инпуты / ring */
+    --border: 283 20% 90%;
+    --input: 283 20% 90%;
+    --ring: 341 65% 42%;
 
+    /* радиус */
     --radius: 0.75rem;
 
-    --exercise-category: 240 5% 65%;
-    --video-overlay: 240 10% 15%;
-    
+    /* доп. токены под упражнения */
+    --exercise-category: 283 10% 60%;
+    --video-overlay: 297 40% 10%;
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-}
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
-
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     scroll-behavior: smooth;
+
+    /* как на макете — узкая мобильная страница */
+    max-width: 900px;
+    margin: 0 auto;
+   
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Outfit", sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
 }
 
-@layer utilities {
+/* ==== КОМПОНЕНТНЫЕ СТИЛИ ПОД СТРАНИЦУ УПРАЖНЕНИЯ ==== */
+@layer components {
+  /* Карточка упражнения */
+  .exercise-card {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 16px 14px;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  /* Верхняя строка с бейджем и категорией */
+  .exercise-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  /* Бейдж с номером упражнения */
+  .exercise-page-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    white-space: nowrap;
+  }
+
+  /* Категория справа */
+  .exercise-page-subtitle {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    text-align: right;
+  }
+
+  /* Название упражнения */
+  .exercise-page-title {
+    margin-top: 6px;
+    margin-bottom: 4px;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  /* Количество подходов */
+  .exercise-page-sets {
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: hsl(var(--muted-foreground));
+    text-align: left;
+  }
+
+  /* Секции (группы мышц, исходное положение, техника) */
+  .exercise-section {
+    margin-bottom: 10px;
+  }
+
+  /* Заголовки секций */
+  .exercise-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-align: left;
+  }
+
+  /* Группы мышц — бейджи */
+  .muscle-group-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+  }
+
+  .muscle-badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    background-color: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.2);
+    text-align: center;
+    display: inline-block;
+  }
+
+  /* Списки пунктов */
   .exercise-list {
-    @apply space-y-1.5 pl-6;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    text-align: left;
   }
-  
+
   .exercise-list li {
-    @apply relative;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.4;
+    color: hsl(var(--foreground));
+    margin-bottom: 5px;
+    padding-left: 14px;
   }
-  
+
   .exercise-list li::before {
-    content: '';
-    @apply absolute -left-5 top-[0.6em] w-2 h-2 rounded-full bg-primary;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background-color: hsl(var(--primary));
   }
+
+  /* Блок с видео */
+  .exercise-videos-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .exercise-videos-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+/* ==== ДОП. УТИЛИТЫ (если нужно переиспользовать) ==== */
+@layer utilities {
+  .exercise-list-tight {
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+}
+
+/* ===== СТАРЫЕ VITE/REACT СТИЛИ (можно оставить, чтобы ничего не ломать) ===== */
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }
