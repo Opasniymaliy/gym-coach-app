@@ -3,15 +3,30 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { Header } from "@/components/Header";
 import Workout1 from "./pages/Workout1";
 import Workout2 from "./pages/Workout2";
 import Optional from "./pages/Optional";
 import NotFound from "./pages/NotFound";
-import { workout1Exercises, workout2Exercises, optionalExercises } from "@/data/exercises";
+import {
+  workout1Exercises,
+  workout2Exercises,
+  optionalExercises,
+} from "@/data/exercises";
 
 const queryClient = new QueryClient();
+
+// basename для GitHub Pages
+// локально (npm run dev) будет "/", в проде "/gym-coach-app"
+const basename =
+  import.meta.env.MODE === "production" ? "/gym-coach-app" : "/";
 
 const AppContent = () => {
   const navigate = useNavigate();
@@ -19,8 +34,7 @@ const AppContent = () => {
 
   const handleSearch = (query: string) => {
     const searchLower = query.toLowerCase();
-    
-    // Search in all exercises
+
     const allExercises = [
       { exercises: workout1Exercises, path: "/workout-1" },
       { exercises: workout2Exercises, path: "/workout-2" },
@@ -33,17 +47,15 @@ const AppContent = () => {
       );
 
       if (foundExercise) {
-        // Navigate to the page
         navigate(path);
-        
-        // Wait for navigation and then scroll
+
         setTimeout(() => {
           const element = document.getElementById(foundExercise.id);
           if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "center" });
           }
         }, 100);
-        
+
         return;
       }
     }
@@ -68,7 +80,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <AppContent />
       </BrowserRouter>
     </TooltipProvider>
