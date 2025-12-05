@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { Search, X, Menu } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { Menu } from "lucide-react";
+import SearchBar from "./SearchBar";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   workout1Exercises,
   workout2Exercises,
@@ -12,10 +13,12 @@ interface HeaderProps {
 }
 
 export const Header = ({ onSearch }: HeaderProps) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  // search is handled by the dedicated SearchBar component
   const [isNavOpen, setIsNavOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchContainerRef = useRef<HTMLDivElement | null>(null);
+  const navContainerRef = useRef<HTMLDivElement | null>(null);
 
   const allExercises = [
     ...workout1Exercises.map((e) => ({ ...e, page: "/workout-1" })),
@@ -23,43 +26,34 @@ export const Header = ({ onSearch }: HeaderProps) => {
     ...optionalExercises.map((e) => ({ ...e, page: "/optional" })),
   ];
 
-  const handleSearchSubmit = (e?: React.FormEvent) => {
-    e?.preventDefault();
-    const q = searchQuery.trim().toLowerCase();
-    if (!q) return;
-
-    // попытка точного совпадения по имени
-    const found = allExercises.find((ex) =>
-      ex.name.toLowerCase().includes(q)
-    );
-
-    if (found) {
-      // Перейти на страницу, затем пролистать к блоку
-      navigate(found.page);
-      setIsSearchOpen(false);
-      setSearchQuery("");
-
-      // Дать время странице отрисоваться, затем плавно пролистать
-      setTimeout(() => {
-        const el = document.getElementById(found.id);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 300);
-
-      if (onSearch) onSearch(found.name);
-    } else {
-      // если не найдено - попробовать открыть страницу Workout1 и искать там
-      // или уведомить пользователя — пока просто закроем поиск
-      setIsSearchOpen(true);
-    }
+  const getCurrentPage = () => {
+    if (location.pathname.includes("workout-1")) return "/workout-1";
+    if (location.pathname.includes("workout-2")) return "/workout-2";
+    if (location.pathname.includes("optional")) return "/optional";
+    return "/workout-1";
   };
 
-  // Закрывать нав-панель по Esc
+  const searchAndNavigate = (qRaw: string) => {
+    const q = qRaw.trim().toLowerCase();
+    if (!q) return;
+
+    const found = allExercises.find((ex) => ex.name.toLowerCase().includes(q));
+    if (!found) return;
+
+    navigate(found.page);
+
+    setTimeout(() => {
+      const el = document.getElementById(found.id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 350);
+
+    onSearch?.(found.name);
+  };
+
+  // Esc закрывает меню
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setIsSearchOpen(false);
         setIsNavOpen(false);
       }
     };
@@ -67,115 +61,146 @@ export const Header = ({ onSearch }: HeaderProps) => {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Left: Search button + animated input */}
-          <div className="flex items-center">
-            <button
-              aria-label="Открыть поиск"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-transform transform-gpu hover:scale-105"
-              onClick={() => setIsSearchOpen((s) => !s)}
-            >
-              <Search className="h-6 w-6 text-foreground" />
-            </button>
+  // Закрытие при клике вне панелей
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
 
-            <div
-              className={`ml-3 transition-all duration-300 ease-out overflow-hidden ${
-                isSearchOpen ? "w-80 opacity-100" : "w-0 opacity-0"
-              }`}
-            >
-              <form
-                onSubmit={(e) => handleSearchSubmit(e)}
-                className="flex items-center space-x-2 bg-transparent"
-              >
-                <input
-                  type="text"
-                  placeholder="Найти упражнение..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  autoFocus={isSearchOpen}
-                  className="w-full text-sm placeholder:text-muted-foreground bg-white/6 backdrop-blur-sm border border-white/6 px-3 py-2 rounded-full outline-none text-foreground"
-                />
-                <button
-                  type="submit"
-                  className="text-sm px-3 py-1 rounded-full bg-primary/90 text-white hover:bg-primary"
-                >
-                  Найти
-                </button>
-                <button
-                  type="button"
-                  aria-label="Закрыть поиск"
-                  onClick={() => {
-                    setIsSearchOpen(false);
-                    setSearchQuery("");
-                  }}
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </form>
-            </div>
+      if (navContainerRef.current && !navContainerRef.current.contains(target)) {
+        setIsNavOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+ 
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl bg-white/40 backdrop-blur-sm border-b border-white/10">
+        <div className="flex items-center justify-between pt-2 h-20">
+          {/* === ПАНЕЛЬ ПОИСКА (слева) === */}
+          <div ref={searchContainerRef} className="pointer-events-auto">
+            <SearchBar onSearch={searchAndNavigate} />
           </div>
 
-          {/* Right: Navigation button */}
-          <div className="flex items-center">
+          {/* Спейсер для центра */}
+          <div className="flex-1" />
+
+          {/* === ПАНЕЛЬ НАВИГАЦИИ (справа) === */}
+          <div ref={navContainerRef} className="relative pointer-events-auto">
+            {/* Кнопка бургер-меню */}
             <button
-              aria-label="Открыть навигацию"
-              onClick={() => setIsNavOpen(true)}
-              className="w-10 h-10 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10 transition-transform hover:scale-105"
+              onClick={() => setIsNavOpen((v) => !v)}
+              aria-label="Открыть меню"
+              className="w-11 h-11 flex items-center justify-center rounded-full bg-white/85 backdrop-blur-sm shadow-md shadow-black/15 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-black/20 active:scale-95"
             >
-              <Menu className="h-5 w-5 text-foreground" />
+              <Menu className="h-5 w-5 text-gray-800" />
             </button>
+
+            {/* Выпадающее меню */}
+            {isNavOpen && (
+              <div
+                className="
+                  animate-[slideInRight_0.3s_ease-out]
+                  absolute top-14 right-0
+                  w-64
+                  rounded-3xl
+                  bg-white shadow-lg shadow-black/20
+                  border border-gray-100
+                  p-4 space-y-3
+                "
+              >
+                {/* Пункт 1 */}
+                <button
+                  onClick={() => {
+                    navigate("/workout-1");
+                    setIsNavOpen(false);
+                  }}
+                  className={`
+                    w-full text-left px-4 py-3 rounded-2xl
+                    transition-all duration-150
+                    text-sm font-bold uppercase tracking-wide
+                    ${
+                      getCurrentPage() === "/workout-1"
+                        ? "bg-primary/20 text-primary"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }
+                  `}
+                >
+                  Тренировка 1
+                </button>
+
+                {/* Пункт 2 */}
+                <button
+                  onClick={() => {
+                    navigate("/workout-2");
+                    setIsNavOpen(false);
+                  }}
+                  className={`
+                    w-full text-left px-4 py-3 rounded-2xl
+                    transition-all duration-150
+                    text-sm font-bold uppercase tracking-wide
+                    ${
+                      getCurrentPage() === "/workout-2"
+                        ? "bg-primary/20 text-primary"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }
+                  `}
+                >
+                  Тренировка 2
+                </button>
+
+                {/* Пункт 3 */}
+                <button
+                  onClick={() => {
+                    navigate("/optional");
+                    setIsNavOpen(false);
+                  }}
+                  className={`
+                    w-full text-left px-4 py-3 rounded-2xl
+                    transition-all duration-150
+                    text-sm font-bold uppercase tracking-wide
+                    ${
+                      getCurrentPage() === "/optional"
+                        ? "bg-primary/20 text-primary"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }
+                  `}
+                >
+                  Опциональный день
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Navigation panel (popover/drawer) */}
-      {isNavOpen && (
-        <div className="fixed top-20 right-4 z-60 w-64 bg-card border border-border rounded-lg shadow-lg p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h4 className="text-sm font-bold">Страницы</h4>
-            <button
-              aria-label="Закрыть"
-              onClick={() => setIsNavOpen(false)}
-              className="w-8 h-8 flex items-center justify-center rounded-md bg-white/5 hover:bg-white/10"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-          <nav className="flex flex-col gap-2">
-            <button
-              className="text-left px-3 py-2 rounded-md hover:bg-white/5"
-              onClick={() => {
-                navigate("/workout-1");
-                setIsNavOpen(false);
-              }}
-            >
-              Тренировка 1
-            </button>
-            <button
-              className="text-left px-3 py-2 rounded-md hover:bg-white/5"
-              onClick={() => {
-                navigate("/workout-2");
-                setIsNavOpen(false);
-              }}
-            >
-              Тренировка 2
-            </button>
-            <button
-              className="text-left px-3 py-2 rounded-md hover:bg-white/5"
-              onClick={() => {
-                navigate("/optional");
-                setIsNavOpen(false);
-              }}
-            >
-              Опциональный день
-            </button>
-          </nav>
-        </div>
-      )}
+      {/* Анимации (глобальный стиль) */}
+      <style>{`
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateY(-10px) translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) translateX(0);
+          }
+        }
+      `}</style>
     </header>
   );
 };

@@ -9,7 +9,7 @@ export interface Exercise {
   muscles: string[];
   startingPosition: string[];
   technique: string[];
-  videos: { src: string; caption: string }[];
+  videos: { src: string; caption: string; horizontal?: boolean }[];
 }
 
 interface ExerciseBlockProps {
@@ -72,14 +72,20 @@ export const ExerciseBlock = ({ exercise }: ExerciseBlockProps) => {
     className="mt-4 grid grid-cols-2 gap-4"
   >
     {exercise.videos.map((video, index) => (
-      <VideoPlayer
+      <div
         key={index}
-        src={video.src}
-        caption={video.caption}
-      />
+        className={
+          exercise.videos.length === 1
+            ? "col-span-2 flex justify-center"   // если одно — центр
+            : ""                                 // если два — как раньше
+        }
+      >
+        <VideoPlayer src={video.src} caption={video.caption} horizontal={video.horizontal} />
+      </div>
     ))}
   </section>
 )}
+
 
     </section>
   );

@@ -23,10 +23,9 @@ import {
 
 const queryClient = new QueryClient();
 
-// basename для GitHub Pages
-// локально (npm run dev) будет "/", в проде "/gym-coach-app"
-const basename =
-  import.meta.env.MODE === "production" ? "/gym-coach-app" : "/";
+// basename: используем Vite-значение `BASE_URL`, оно корректно для dev/preview/build
+// например локально `/`, при деплое в подпапку — `/gym-coach-app/` или другой путь
+const basename = import.meta.env.BASE_URL || "/";
 
 const AppContent = () => {
   const navigate = useNavigate();

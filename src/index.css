@@ -10,27 +10,27 @@
   :root {
     /* фон и текст */
     --background: 283 47% 97%;      /* #f9f4fb */
-    --foreground: 297 46% 16%;      /* #3a163c */
+    --foreground: 295 35% 25%;      /* более тёмный, менее серый, тёмно-фиолетовый */
 
     /* карточки */
     --card: 0 0% 100%;
-    --card-foreground: 297 46% 16%;
+    --card-foreground: 295 35% 25%;
 
     /* поповеры */
     --popover: 0 0% 100%;
-    --popover-foreground: 297 46% 16%;
+    --popover-foreground: 295 35% 25%;
 
-    /* основной акцент — малиновый */
-    --primary: 341 65% 42%;         /* #b12652 */
+    /* основной акцент — насыщенный малиново-бордовый */
+    --primary: 343 70% 38%;         /* более насыщенный, темнее: #a01d4a */
     --primary-foreground: 0 0% 100%;
 
     /* вторичный фон */
     --secondary: 283 47% 93%;
-    --secondary-foreground: 297 46% 16%;
+    --secondary-foreground: 295 35% 25%;
 
     /* muted / подписи */
     --muted: 283 47% 93%;
-    --muted-foreground: 283 20% 40%;
+    --muted-foreground: 295 25% 45%;
 
     /* доп. акцент */
     --accent: 335 46% 56%;          /* #c35b86 */
@@ -79,8 +79,12 @@
     font-weight: 800;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    
+    
   }
 }
+
+
 
 /* ==== КОМПОНЕНТНЫЕ СТИЛИ ПОД СТРАНИЦУ УПРАЖНЕНИЯ ==== */
 @layer components {
@@ -116,6 +120,7 @@
     background-color: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
     white-space: nowrap;
+    
   }
 
   /* Категория справа */
@@ -129,33 +134,53 @@
   /* Название упражнения */
   .exercise-page-title {
     margin-top: 6px;
-    margin-bottom: 4px;
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.2;
+    margin-bottom: 7px;
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.1;
     text-align: left;
+    color: hsl(var(--primary));
+    position: relative;
+    padding-bottom: 8px;
+    display: inline-block;
+    color: #3a163c;
+  }
+
+  /* Декоративная линия под названием упражнения */
+  .exercise-page-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: hsl(var(--primary));
+    border-radius: 2px;
   }
 
   /* Количество подходов */
   .exercise-page-sets {
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: hsl(var(--muted-foreground));
-    text-align: left;
+
+    font-size: 12px;
+    color: #b58db8;
   }
 
   /* Секции (группы мышц, исходное положение, техника) */
   .exercise-section {
-    margin-bottom: 10px;
+    margin-bottom: 3px;
   }
 
   /* Заголовки секций */
   .exercise-section-title {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 900;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
+    margin-top: 1px;
     text-align: left;
+    color: hsl(var(--primary));
+    letter-spacing: 0.5px;
+    color: #3a163c;
   }
 
   /* Группы мышц — бейджи */
@@ -163,20 +188,14 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: 10px;
+   
     justify-content: flex-start;
   }
 
   .muscle-badge {
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    background-color: hsl(var(--primary) / 0.1);
-    color: hsl(var(--primary));
-    border: 1px solid hsl(var(--primary) / 0.2);
-    text-align: center;
-    display: inline-block;
+    
+    font-size: 12px;
+    color: #b58db8;
   }
 
   /* Списки пунктов */
@@ -189,10 +208,11 @@
 
   .exercise-list li {
     position: relative;
-    font-size: 13px;
-    line-height: 1.4;
-    color: hsl(var(--foreground));
-    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: hsl(var(--foreground) / 0.92);
+    margin-bottom: 1px;
     padding-left: 14px;
   }
 
@@ -233,11 +253,12 @@
 /* ===== СТАРЫЕ VITE/REACT СТИЛИ (можно оставить, чтобы ничего не ломать) ===== */
 
 #root {
-  max-width: 1280px;
+  max-width: 900px;      /* как у body, можно вообще убрать */
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 0 16px 24px;  /* чуть-чуть внутренних отступов */
+  text-align: left;      /* ВАЖНО: всё по левому краю */
 }
+
 
 .logo {
   height: 6em;
