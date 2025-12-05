@@ -13,7 +13,7 @@ const Workout2 = () => {
           className="mb-6 text-xl text-primary/90"
           style={{ fontFamily: "'Brush Script MT', 'Segoe Script', cursive" }}
         >
-          For the sweetest Marina Savelyeva ;)
+          For the sweetest Marie Savelyeva ;)
         </p>
 
         <div className="space-y-6">
