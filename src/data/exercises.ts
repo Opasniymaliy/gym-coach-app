@@ -13,7 +13,7 @@ export const workout1Exercises: Exercise[] = [
       "Носки стоп смотрят прямо или даже чуть чуть развернуты в стороны",
       "Ноги согнуты немного в коленных суставах, спина ровная!",
       "Прямые руки, в руках никакого движения",
-      "Взгляд прямо перед собой",
+      "Взгляд прямо перед собой;)",
     ],
     technique: [
       "На вдохе плавно отводи таз назад (будто хочешь сесть на стул)",
@@ -31,7 +31,7 @@ export const workout1Exercises: Exercise[] = [
   {
     id: "workout1-ex2",
     number: 2,
-    category: "НИЗ ТЕЛА",
+    category: "НИЗ ТЕЛА & ПРЕСС",
     name: "РУМЫНСКАЯ ТЯГА",
     sets: "2 подхода по 12–15 повторений",
     muscles: ["Ягодицы, бицепс бедра"],
@@ -56,7 +56,7 @@ export const workout1Exercises: Exercise[] = [
   {
     id: "workout1-ex3",
     number: 3,
-    category: "НИЗ ТЕЛА",
+    category: "НИЗ ТЕЛА & ПРЕСС",
     name: "ЯГОДИЧНЫЙ МОСТ",
     sets: "3 подхода по 15-20 повторений",
     muscles: ["Ягодицы"],
@@ -83,7 +83,7 @@ export const workout1Exercises: Exercise[] = [
   {
     id: "workout1-ex4",
     number: 4,
-    category: "ПРЕСС",
+    category: "НИЗ ТЕЛА & ПРЕСС",
     name: "СКРУЧИВАНИЯ",
     sets: "2-3 подхода по 15-20 повторений",
     muscles: ["Верхний пресс"],
@@ -109,7 +109,7 @@ export const workout1Exercises: Exercise[] = [
   {
     id: "workout1-ex5",
     number: 5,
-    category: "ПРЕСС",
+    category: "НИЗ ТЕЛА & ПРЕСС",
     name: "ПЛАНКА",
     sets: "2-3 подхода по 30-40 сек. (или меньше 20-30 сек.) смотри по ощущениям",
     muscles: ["Кор"],
@@ -169,7 +169,7 @@ export const workout2Exercises: Exercise[] = [
   {
     id: "workout2-ex2",
     number: 2,
-    category: "ВЕРХ ТЕЛА",
+    category: "ВЕРХ ТЕЛА & ОСАНКА",
     name: "ТЯГА ГОРИЗОНТАЛЬНОГО БЛОКА",
     sets: "2 подхода по 12–15 повторений",
     muscles: ["Середина спины"],
@@ -194,7 +194,7 @@ export const workout2Exercises: Exercise[] = [
   {
     id: "workout2-ex3",
     number: 3,
-    category: "ВЕРХ ТЕЛА",
+    category: "ВЕРХ ТЕЛА & ОСАНКА",
     name: "ЖИМ ГАНТЕЛЕЙ СИДЯ",
     sets: "3 подхода по 10–12 повторений",
     muscles: ["Передние дельты плеч"],
@@ -219,7 +219,7 @@ export const workout2Exercises: Exercise[] = [
   {
     id: "workout2-ex4",
     number: 4,
-    category: "ОСАНКА",
+    category: "ВЕРХ ТЕЛА & ОСАНКА",
     name: "ОТЖИМАНИЯ ОТ СКАМЬИ",
     sets: "2-3 подхода по 10-12 повторений",
     muscles: ["Трицепс, грудь"],
@@ -245,7 +245,7 @@ export const workout2Exercises: Exercise[] = [
   {
     id: "workout2-ex5",
     number: 5,
-    category: "РУКИ",
+    category: "ВЕРХ ТЕЛА & ОСАНКА",
     name: "РАЗВЕДЕНИЕ ГАНТЕЛЕЙ В СТОРОНЫ",
     sets: "2 подхода по 12–15 повторений",
     muscles: ["Средние дельты плеч"],
@@ -271,7 +271,7 @@ export const workout2Exercises: Exercise[] = [
   {
     id: "workout2-ex6",
     number: 6,
-    category: "РУКИ",
+    category: "ВЕРХ ТЕЛА & ОСАНКА",
     name: "ПОДЪЕМ НОГ ЛЕЖА",
     sets: "3 подхода по 12-15 повторений",
     muscles: ["Низ пресса"],
@@ -298,7 +298,7 @@ export const optionalExercises: Exercise[] = [
   {
     id: "optional-ex1",
     number: 1,
-    category: "КАРДИО & ВЫНОСЛИВОСТЬ",
+    category: "ФОКУС & ИНТЕНСИВ",
     name: "БОЛГАРСКИЕ ВЫПАДЫ НА МЕСТЕ",
     sets: "2 подхода по 10–12 повторений (на ногу)",
     muscles: ["Квадрицепсы, ягодицы"],
@@ -322,7 +322,7 @@ export const optionalExercises: Exercise[] = [
   {
     id: "optional-ex2",
     number: 2,
-    category: "КАРДИО",
+    category: "ФОКУС & ИНТЕНСИВ",
     name: "МАХИ НОГОЙ НАЗАД НА ЧЕТВЕРЕНЬКАХ",
     sets: "2-3 подхода по 12–15 повторений (на ногу)",
     muscles: ["Верх ягодиц"],
@@ -345,7 +345,7 @@ export const optionalExercises: Exercise[] = [
   {
     id: "optional-ex3",
     number: 3,
-    category: "РАСТЯЖКА",
+    category: "ФОКУС & ИНТЕНСИВ",
     name: "ЯГОДИЧНЫЙ МОСТ",
     sets: "3 подхода по 15–20 повторений",
     muscles: ["Ягодицы"],
@@ -372,7 +372,7 @@ export const optionalExercises: Exercise[] = [
   {
     id: "optional-ex4",
     number: 4,
-    category: "РАСТЯЖКА",
+    category: "ФОКУС & ИНТЕНСИВ",
     name: "ГИПЕРЭКСТЕНЗИЯ",
     sets: "2 подхода по 12–15 повторений",
     muscles: ["Разгибатели спины, ягодицы, задняя поверхность бедра"],
@@ -397,7 +397,7 @@ export const optionalExercises: Exercise[] = [
   {
     id: "optional-ex5",
     number: 5,
-    category: "ВОССТАНОВЛЕНИЕ",
+    category: "ФОКУС & ИНТЕНСИВ",
     name: "КАРДИО",
     sets: "15-20 минут",
     muscles: ["-"],
