@@ -102,7 +102,7 @@ export const workout1Exercises: Exercise[] = [
       
     ],
     videos: [
-      { src: "videos/press1.MP4", caption: "Техника" },
+      { src: "videos/press1.MP4", caption: "Техника выполнения" },
       
     ],
   },
@@ -127,7 +127,7 @@ export const workout1Exercises: Exercise[] = [
       
     ],
     videos: [
-      { src: "videos/videos7.MP4", caption: "Вид сбоку", horizontal: true },
+      { src: "videos/videos7.MP4", caption: "Техника выполнения", horizontal: true },
       
     ],
   },
@@ -212,7 +212,7 @@ export const workout2Exercises: Exercise[] = [
       
     ],
     videos: [
-      { src: "videos/jim.MP4", caption: "Положение" },
+      { src: "videos/jim.MP4", caption: "Техника выполнения" },
       
     ],
   },
@@ -264,7 +264,7 @@ export const workout2Exercises: Exercise[] = [
      
     ],
     videos: [
-      { src: "videos/videos21.mp4", caption: "Супинация кисти" },
+      { src: "videos/videos21.mp4", caption: "Техника выполнения" },
       
     ],
   },
@@ -288,7 +288,7 @@ export const workout2Exercises: Exercise[] = [
       "Делай пока с согнутыми ногами, прямыми потом как-нибудь",
     ],
     videos: [
-      { src: "videos/videos22.mp4", caption: "Со штангой", horizontal: true },
+      { src: "videos/videos22.mp4", caption: "Техника выполнения", horizontal: true },
      
     ],
   },
@@ -316,7 +316,7 @@ export const optionalExercises: Exercise[] = [
     ],
     videos: [
       
-      { src: "videos/videos23.mp4", caption: "Фаза восстановления" },
+      { src: "videos/videos23.mp4", caption: "Техника выполнения" },
     ],
   },
   {
@@ -338,7 +338,7 @@ export const optionalExercises: Exercise[] = [
       
     ],
     videos: [
-      { src: "videos/videos34.mp4", caption: "Настройка тренажера", horizontal: true },
+      { src: "videos/videos34.mp4", caption: "Техника выполнения", horizontal: true },
       
     ],
   },
@@ -390,7 +390,7 @@ export const optionalExercises: Exercise[] = [
       "Ну или упрощенный варик: Можно выполнять с меньшей амплитудой, а когда уже окрепнут мышцы можно и в полную.",
     ],
     videos: [
-      { src: "videos/videos24.mp4", caption: "Положение руки" },
+      { src: "videos/videos24.mp4", caption: "Техника выполнения" },
       
     ],
   },

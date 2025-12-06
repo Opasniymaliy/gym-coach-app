@@ -1,9 +1,10 @@
 import { ExerciseBlock } from "@/components/ExerciseBlock";
 import { optionalExercises } from "@/data/exercises";
+import Footer from "@/components/Footer";
 
 const Optional = () => {
   return (
-    <main className="pt-20 pb-16 exercise-page">
+    <main className="pt-20 pb-8 exercise-page">
       <div className="mx-auto px-1">
         <h1 className="text-3xl font-extrabold text-primary mb-1 text-left">
           Опциональный день
@@ -13,7 +14,7 @@ const Optional = () => {
           className="mb-6 text-xl text-primary/90"
           style={{ fontFamily: "'Brush Script MT', 'Segoe Script', cursive" }}
         >
-          For the sweetest Marie Savelyeva ;)
+          For the sweetest Marina Savelyeva ;)
         </p>
 
         <div className="space-y-6">
@@ -22,6 +23,7 @@ const Optional = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </main>
   );
 };
